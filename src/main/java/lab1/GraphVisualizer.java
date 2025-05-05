@@ -125,3 +125,4 @@ public class GraphVisualizer {
         System.out.println("----------------------");
     }
 }
+// B2
