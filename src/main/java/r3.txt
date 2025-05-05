@@ -1,0 +1,2 @@
+analyzed->the->scientist->analyzed
+Stopped at repeated edge: analyzed->the

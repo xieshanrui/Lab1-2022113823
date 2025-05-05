@@ -1,0 +1,2 @@
+carefully->analyzed->the->report->and->shared->the
+Stopped at repeated edge: the->report
