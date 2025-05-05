@@ -125,4 +125,8 @@ public class GraphVisualizer {
         System.out.println("----------------------");
     }
 }
+<<<<<<< HEAD
 //无意义的修改1
+=======
+// B2
+>>>>>>> B2
