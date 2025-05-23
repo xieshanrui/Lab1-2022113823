@@ -1,10 +1,13 @@
-package lab1;
+package com.ray.app;
 
-import java.io.*;
-import java.util.*;
+import java.io.File;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.List;
+import java.util.Map;
 
 public class GraphVisualizer {
-    private DirectedGraph graph;
+    private final DirectedGraph graph;
     private static final String DOT_PATH = "dot"; // 确保系统已安装GraphViz并将dot添加到环境变量
 
     public GraphVisualizer(DirectedGraph graph) {
@@ -72,19 +75,8 @@ public class GraphVisualizer {
         // 生成DOT文件
         String dotContent = generateDotString();
         File tempDot = File.createTempFile("graph_", ".dot");
-        try (PrintWriter writer = new PrintWriter(tempDot)) {
-            writer.print(dotContent);
-        }
+        generateImageFromDot(outputPath, dotContent, tempDot);
 
-        // 调用GraphViz生成图片
-        ProcessBuilder pb = new ProcessBuilder(
-            DOT_PATH, "-Tpng", tempDot.getAbsolutePath(), "-o", outputPath
-        );
-        Process process = pb.start();
-        process.waitFor();
-
-        // 清理临时文件
-        tempDot.delete();
     }
 
     // 保存带有高亮路径的图片
@@ -92,6 +84,11 @@ public class GraphVisualizer {
             throws IOException, InterruptedException {
         String dotContent = generateDotStringWithPath(path);
         File tempDot = File.createTempFile("graph_path_", ".dot");
+        generateImageFromDot(outputPath, dotContent, tempDot);
+
+    }
+
+    private void generateImageFromDot(String outputPath, String dotContent, File tempDot) throws IOException, InterruptedException {
         try (PrintWriter writer = new PrintWriter(tempDot)) {
             writer.print(dotContent);
         }
@@ -102,7 +99,9 @@ public class GraphVisualizer {
         Process process = pb.start();
         process.waitFor();
 
-        tempDot.delete();
+        if (!tempDot.delete()) {
+            System.err.println("Failed to delete temporary file: " + tempDot.getAbsolutePath());
+        }
     }
 
     // 在命令行中展示图结构
@@ -125,5 +124,4 @@ public class GraphVisualizer {
         System.out.println("----------------------");
     }
 }
-//无意义的修改1
-// B2
+

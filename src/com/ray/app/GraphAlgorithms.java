@@ -1,10 +1,9 @@
-package lab1;
+package com.ray.app;
 
 import java.util.*;
-import java.io.*;
 
 public class GraphAlgorithms {
-    private DirectedGraph graph;
+    private final DirectedGraph graph;
     private static final double DAMPING_FACTOR = 0.85; // PageRank阻尼因子
 
     public GraphAlgorithms(DirectedGraph graph) {
@@ -23,8 +22,7 @@ public class GraphAlgorithms {
         Map<String, Integer> distances = new HashMap<>();
         Map<String, String> previous = new HashMap<>();
         PriorityQueue<String> queue = new PriorityQueue<>(
-            (a, b) -> distances.getOrDefault(a, Integer.MAX_VALUE) - 
-                      distances.getOrDefault(b, Integer.MAX_VALUE));
+                Comparator.comparingInt(a -> distances.getOrDefault(a, Integer.MAX_VALUE)));
 
         // 初始化距离
         for (String node : graph.getNodes()) {
@@ -58,7 +56,7 @@ public class GraphAlgorithms {
         List<String> path = new ArrayList<>();
         String current = word2;
         while (current != null) {
-            path.add(0, current);
+            path.addFirst(current);
             current = previous.get(current);
         }
 
@@ -139,7 +137,7 @@ public class GraphAlgorithms {
             }
 
             visitedEdges.add(edge);
-            path.append("->" + nextNode);
+            path.append("->").append(nextNode);
             currentNode = nextNode;
         }
 

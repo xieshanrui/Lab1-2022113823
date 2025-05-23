@@ -1,7 +1,9 @@
-package lab1;
+package com.ray.app;
 
 import java.io.*;
-import java.util.*;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Scanner;
 
 public class Main {
     private static DirectedGraph graph;

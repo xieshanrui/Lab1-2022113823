@@ -1,12 +1,14 @@
-package lab1;
+package com.ray.app;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.*;
-import java.io.*;
 
 public class DirectedGraph {
     // 图的邻接表表示
-    private Map<String, Map<String, Integer>> graph;
-    private Random random;
+    private final Map<String, Map<String, Integer>> graph;
+    private final Random random;
 
     public DirectedGraph() {
         graph = new HashMap<>();
