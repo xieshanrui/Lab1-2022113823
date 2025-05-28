@@ -4,10 +4,12 @@ import java.util.*;
 
 public class GraphAlgorithms {
     private final DirectedGraph graph;
+    private final Random random;
     private static final double DAMPING_FACTOR = 0.85; // PageRank阻尼因子
 
     public GraphAlgorithms(DirectedGraph graph) {
         this.graph = graph;
+        this.random = new Random();
     }
 
     // 计算最短路径（Dijkstra算法）
@@ -115,7 +117,6 @@ public class GraphAlgorithms {
             return "Graph is empty";
         }
 
-        Random random = new Random();
         String currentNode = nodes.get(random.nextInt(nodes.size()));
         StringBuilder path = new StringBuilder(currentNode);
         Set<String> visitedEdges = new HashSet<>();
@@ -144,8 +145,3 @@ public class GraphAlgorithms {
         return path.toString();
     }
 }
-//无意义的修改2
-// B2 modify 1
-// B2 modify 2
-// B2 modify 3
-// 测试插件
