@@ -1,4 +1,4 @@
-package com.ray.app;
+package cn.edu.hit;
 
 import java.io.File;
 import java.io.IOException;
